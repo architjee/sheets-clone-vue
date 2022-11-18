@@ -18,7 +18,7 @@ export default {
 
 <template>
 <div class="excel-row" v-for="row in Array(rows_size).keys()">
-<Cell v-for="col in Array(cols_size).keys()" :content="col"></Cell>
+<Cell v-for="col in Array(cols_size).keys()" initialcontent=""></Cell>
 </div>
 </template>
 <style>

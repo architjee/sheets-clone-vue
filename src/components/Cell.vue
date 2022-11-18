@@ -1,29 +1,42 @@
 <template>
-<div class="cell" >
-    <input v-if="editing">
+<div class="cell" @click="editing=true">
+    <input v-if="editing" :value="content" @change="update" @blur="update" @vnode-mounted="({ el }) => el.focus()">
     <span v-else>{{ content }}</span>
   </div>
 </template>
 
 <script>
-export default {props: ['content'],
+export default {props: ['initialcontent'],
 created(){
     console.log("Cell created with content passed as " , this.content)
 },
   data() {
     return {
         editing: false,
+        content: this.initialcontent,
     }
+  },
+  methods:{
+    update(e){
+        console.log("Value of this cell updated to ", e.target.value)
+        this.content = e.target.value.trim();
+    this.editing= false;
   }
+  }
+  
 }
 </script>
 
 <style>
-.cell, .cell input {
+.cell{
+    min-width: 6rem;
+    width: 10rem;
+}
+.cell{
   height: 1.5em;
   line-height: 1.5;
   font-size: 15px;
-  min-width: 6rem;
+  
   border: 1px solid black;
 }
 
@@ -31,8 +44,5 @@ created(){
   padding: 0 6px;
 }
 
-.cell input {
-  width: 100%;
-  box-sizing: border-box;
-}
+
 </style>
