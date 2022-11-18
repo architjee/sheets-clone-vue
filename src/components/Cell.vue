@@ -7,9 +7,7 @@
 
 <script>
 export default {props: ['initialcontent'],
-created(){
-    console.log("Cell created with content passed as " , this.content)
-},
+
   data() {
     return {
         editing: false,
