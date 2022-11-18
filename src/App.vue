@@ -17,7 +17,12 @@ export default {
 </script>
 
 <template>
-<div v-for="row in Array(rows_size).keys()">
+<div class="excel-row" v-for="row in Array(rows_size).keys()">
 <Cell v-for="col in Array(cols_size).keys()" :content="col"></Cell>
 </div>
 </template>
+<style>
+.excel-row{
+  display: flex;
+}
+</style>
