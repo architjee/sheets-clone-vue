@@ -1,9 +1,23 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+
+import Cell from './components/Cell.vue'
+
+
+export default {
+  components:{
+    Cell
+  },
+  data() {
+    return {
+      rows_size: 8,
+      cols_size:8
+    }
+  }
+}
 </script>
 
 <template>
-  <HelloWorld msg="Vite+Vue.js making a sheets clone." />
+<div v-for="row in Array(rows_size).keys()">
+<Cell v-for="col in Array(cols_size).keys()" :content="col"></Cell>
+</div>
 </template>
