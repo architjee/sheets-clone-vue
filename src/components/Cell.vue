@@ -26,16 +26,14 @@ export default {props: ['initialcontent'],
 </script>
 
 <style>
-.cell{
+.cell,.cell input{
     min-width: 6rem;
     width: 10rem;
 }
-.cell{
+.cell, .cell input{
   height: 1.5em;
   line-height: 1.5;
   font-size: 15px;
-  
-  border: 1px solid black;
 }
 
 .cell span {
