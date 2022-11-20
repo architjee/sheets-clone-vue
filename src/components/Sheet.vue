@@ -29,12 +29,14 @@ export default {
           <th>
             <div class="buttons has-addons">
 
-              <button class="button" @click="this.rows_size--">(-) Row</button>
-              <button class="button" @click="this.cols_size--">(-) Col</button>
+              <button class="button" @click="this.rows_size--">(-) R</button>
+              <button class="button" @click="this.cols_size--">
+
+                (-) C </button>
             </div>
           </th>
           <th v-for="row in Array(cols_size).keys()">{{ getRowLabel(row) }}</th>
-          <th ><button class="button" @click="this.cols_size++">(+) Col</button></th>
+          <th><button class="button" @click="this.cols_size++">(+) Col</button></th>
         </tr>
       </thead>
       <tr v-for="row in Array(rows_size).keys()">
