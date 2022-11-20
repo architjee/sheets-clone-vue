@@ -1,5 +1,11 @@
 <template>
-  Home component
+  <p>
+    This project is a sheets clone. 
+  </p>
+  
+  We have attempted to implement the basic functionality in Vue.
+
+
   </template>
   
   <script>
