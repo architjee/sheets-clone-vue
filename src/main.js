@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue/dist/vue.esm-bundler'
 import { createPinia } from 'pinia'
 
 import './style.css'
-import App from './App.vue'
-
-createApp(App).use(createPinia()).mount('#app')
+import router from './router';
+const vueApplication = createApp({})
+vueApplication.use(router).use(createPinia()).mount('#app')

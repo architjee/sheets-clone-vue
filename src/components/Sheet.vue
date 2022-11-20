@@ -1,6 +1,6 @@
 <script>
 
-import Cell from './components/Cell.vue'
+import Cell from '../components/Cell.vue'
 
 
 export default {
