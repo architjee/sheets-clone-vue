@@ -29,7 +29,7 @@
             <span class="navbar-item">
               <a class="button is-success is-inverted">
                 <span class="icon">
-                  <i class="fab fa-github"></i>
+                    <ion-icon name="add-circle"></ion-icon>
                 </span>
                 <span>Download</span>
               </a>
