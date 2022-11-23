@@ -73,10 +73,10 @@ export default {
                 if (error){
                     this.display_error = error
                 }else{
-                    if(user){
+                    const { data: { user } } = await supabase.auth.getUser()
                         this.UserAuthStore.signIn(user)
                         console.log("Login sucessful")
-                    }
+                    
                 }
             }
         }
