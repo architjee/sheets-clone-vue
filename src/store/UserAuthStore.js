@@ -16,8 +16,9 @@ export const useUserAuthStore = defineStore('UserAuthStore', {
           },
     },
     actions: {
-      increment() {
-        this.count++
+      signIn(user) {
+        this.is_authenticated=true;
+        this.username=user
       },
     },
   })
