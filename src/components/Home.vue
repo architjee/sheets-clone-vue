@@ -1,6 +1,6 @@
 <template>
- <section class="hero is-medium is-white">
-  <div class="hero-body has-text-centered">
+
+  <div class="container">
     <p class="title">
       Sheets Clone App Powered by Vue.
     </p>
@@ -8,7 +8,7 @@
       Made with Love by AJ.
     </p>
   </div>
-</section>
+
 </template>
   
 <script>
