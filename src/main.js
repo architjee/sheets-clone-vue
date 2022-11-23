@@ -10,4 +10,4 @@ import App from './App.vue'
 const vueApplication = createApp(App)
 
 const pinia = createPinia()
-vueApplication.use(router).use(pinia).mount('#app')
+vueApplication.use(pinia).use(router).mount('#app')

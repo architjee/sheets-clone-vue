@@ -1,9 +1,11 @@
-import { createSequenceExpression } from "@vue/compiler-core";
-import { createRouter , createWebHashHistory, createWebHistory} from "vue-router";
-import Home from '../components/Home.vue';
+import { createRouter , createWebHistory} from "vue-router";
+import Home from '../core_components/Home.vue';
 import Sheet from '../components/Sheet.vue'
 import LoginPage from '../core_components/LoginPage.vue'
 import CreateUser from '../core_components/CreateUser.vue'
+import Dashboard from '../core_components/Dashboard.vue'
+import { useUserAuthStore } from '../store/UserAuthStore'
+
 const routes = [
     {
         path: '/',
@@ -24,6 +26,11 @@ const routes = [
         path: '/createuser',
         name: 'CreateUser',
         component: CreateUser,
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard
     }
 ]
 
@@ -31,5 +38,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
-
+router.beforeEach(async (to, from) => { 
+    let UserAuthStore = useUserAuthStore()
+    if (
+      !UserAuthStore.is_authenticated &&  to.name !== 'Login' && to.name!='Home'
+    ) {
+      return { name: 'Login' }
+    }
+  })
 export default router

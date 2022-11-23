@@ -76,7 +76,9 @@ export default {
                     const { data: { user } } = await supabase.auth.getUser()
                         this.UserAuthStore.signIn(user)
                         console.log("Login sucessful")
-                    
+                        if(this.UserAuthStore.is_authenticated){
+                            this.$router.push({name: 'Dashboard'})
+                        }
                 }
             }
         }
