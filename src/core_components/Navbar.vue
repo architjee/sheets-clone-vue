@@ -22,12 +22,12 @@
                 </router-link>
                    
                     <span class="navbar-item">
-                        <a class="button is-success is-inverted">
+                        <router-link to="/login" class="button is-success is-inverted">
                             <span class="icon">
                                 <ion-icon name="log-in-outline"></ion-icon>
                             </span>
                             <span>Login</span>
-                        </a>
+                        </router-link>
                     </span>
                 </div>
             </div>
@@ -37,13 +37,14 @@
 </template>
     
 <script>
-
+import {useUserAuthStore} from '../store/UserAuthStore'
 export default {
     name: 'navbar',
 
     data() {
         return {
-            selected: ''
+            selected: '',
+            UserAuthStore : useUserAuthStore()
         }
     },
 
