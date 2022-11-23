@@ -64,22 +64,18 @@ export default {
         async login_attempt() {
             console.log("Attempting to log in")
             if (this.isValidInput(this.username, this.password)) {
-                console.log("Validated the input, now going to invoke login logic")
-                let { user, error } = await supabase.auth.signInWithPassword({
-                    email: this.username,
-                    password: this.password
-                });
-                console.log("The post request went through results are", user, error)
-                if (error){
-                    this.display_error = error
-                }else{
-                    const { data: { user } } = await supabase.auth.getUser()
-                        this.UserAuthStore.signIn(user)
-                        console.log("Login sucessful")
-                        if(this.UserAuthStore.is_authenticated){
-                            this.$router.push({name: 'Dashboard'})
+                console.log("Validated the input, now going to invoke login logic") 
+                        const { error} = await this.UserAuthStore.signIn(this.username, this.password)
+                        if(error){
+                            console.log("An error occured", error)
+                        }else{
+                            
+                            if(this.UserAuthStore.is_authenticated){
+                                this.$router.push({name: 'Dashboard'})
+                            }
+
                         }
-                }
+                
             }
         }
     }
