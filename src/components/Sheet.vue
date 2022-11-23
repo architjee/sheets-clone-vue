@@ -9,8 +9,8 @@ export default {
   },
   data() {
     return {
-      rows_size: 16,
-      cols_size: 8
+      rows_size: 8,
+      cols_size: 5
     }
   },
   methods: {
@@ -27,16 +27,20 @@ export default {
       <thead>
         <tr>
           <th>
-            <div class="buttons has-addons">
 
-              <button class="button" @click="this.rows_size--">(-) R</button>
-              <button class="button" @click="this.cols_size--">
-
-                (-) C </button>
-            </div>
           </th>
           <th v-for="row in Array(cols_size).keys()">{{ getRowLabel(row) }}</th>
-          <th><button class="button" @click="this.cols_size++">(+) Col</button></th>
+          <th><div class="buttons has-addons">
+
+<button class="button" @click="this.cols_size--">
+  <ion-icon name="remove-circle-outline"></ion-icon>
+</button>
+<button class="button" @click="this.cols_size++">
+  <ion-icon name="add-circle-outline"></ion-icon>
+</button>
+</div>
+
+          </th>
         </tr>
       </thead>
       <tr v-for="row in Array(rows_size).keys()">
@@ -49,7 +53,16 @@ export default {
 
 
         <th>
-          <button class="button" @click="this.rows_size++">(+) Row</button>
+          <div class="buttons has-addons">
+
+            <button class="button" @click="this.rows_size--">
+              <ion-icon name="remove-circle-outline"></ion-icon>
+            </button>
+            <button class="button" @click="this.rows_size++">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </button>
+          </div>
+
         </th>
 
 

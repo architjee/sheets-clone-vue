@@ -24,7 +24,7 @@
                     <span class="navbar-item">
                         <a class="button is-success is-inverted">
                             <span class="icon">
-                                <ion-icon name="add-circle"></ion-icon>
+                                <ion-icon name="log-in-outline"></ion-icon>
                             </span>
                             <span>Login</span>
                         </a>
