@@ -1,4 +1,5 @@
 <template>
+   
     <section class="hero is-light is-fullheight">
         <!-- Hero head: will stick at the top -->
         <div class="hero-head">
