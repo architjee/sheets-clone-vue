@@ -30,8 +30,7 @@ export const useUserAuthStore = defineStore('UserAuthStore', {
         const { data: { user } } = await supabase.auth.getUser()
         console.log(user)
         this.user = user
-        this.username= this.getUsername
-        console.log(this.username)
+        console.log(this.getUsername)
       }
       return { error }
       },

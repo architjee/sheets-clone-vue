@@ -69,7 +69,6 @@ export default {
                         if(error){
                             console.log("An error occured", error)
                         }else{
-                            
                             if(this.UserAuthStore.is_authenticated){
                                 this.$router.push({name: 'Dashboard'})
                             }

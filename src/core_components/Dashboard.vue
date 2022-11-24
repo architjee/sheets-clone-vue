@@ -2,7 +2,8 @@
 
     <div class="container">
       <p class="title">
-        Hi user {{ UserAuthStore.username }} !
+        Hi user {{ UserAuthStore.getUsername }} !
+       
       </p>
       <p class="subtitle">
         Made with Love by AJ.
