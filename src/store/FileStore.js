@@ -10,7 +10,8 @@ export const useFileStore = defineStore('SheetDataStore', {
         metadata: {
             listOfFilesAvailable: []
         },
-        is_working_in_background: [],
+        is_working_in_background: false,
+        
         UserAuthStore: useUserAuthStore(),
     }),
     getters: {
@@ -54,21 +55,13 @@ export const useFileStore = defineStore('SheetDataStore', {
                 console.error('Error retrieving data from db', err)
             }
         },
-        async createNewFile(new_file_name){
-            console.log('We fired the query')
-            // First get user details: 
-        
-            const { error } = await supabase.from("FileStore").insert({ first_name: 'newUser', user_id: this.UserAuthStore.user.id})
-            console.log("We got a response")
-            if(error){
-                console.log("There is some error that occured for which the database couldn't create a new file in the system");
-                console.log("And the error attained is ", error)
-                return { error }
-            }else{
-                console.log("insert query was fired sucessfully")
-                return { error}
-            }
-           
+        async createANewFile(){
 
-    },
+            const newIdResponse = await supabase.rpc('gen_new_uuid')
+            if(newIdResponse.error){
+                console.log('Some error occured in generating a new uuid')
+                return {'error': newIdResponse.error,data: null }
+            }
+            
+        },
 }})
