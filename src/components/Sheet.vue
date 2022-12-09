@@ -1,7 +1,7 @@
 <script>
 
 import Cell from '../components/Cell.vue'
-
+import { useUserAuthStore } from '../store/UserAuthStore';
 
 export default {
   components: {
@@ -10,14 +10,22 @@ export default {
   data() {
     return {
       rows_size: 8,
-      cols_size: 5
+      cols_size: 5,
+      loading: false
     }
   },
   methods: {
     getRowLabel(row_idx) {
       return String.fromCharCode(row_idx + ('A'.charCodeAt(0)));
+    },
+    loadDataFromBackend(){
+      
     }
   },
+  mounted(){
+    // The component is mounted.
+    loadDataFromBackend()
+  }
 }
 </script>
 
