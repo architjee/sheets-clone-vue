@@ -6,13 +6,13 @@
                 <router-link class="navbar-item" to="/">
                     <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo">
                 </router-link>
-                <span class="navbar-burger" data-target="navbarMenuHeroC">
+                <span class="navbar-burger" data-target="navbarMenuHeroC" @click="toggleIsActive">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
             </div>
-            <div id="navbarMenuHeroC" class="navbar-menu is-active">
+            <div id="navbarMenuHeroC" class="navbar-menu" :class="{'is-active': isActive}">
                 <div class="navbar-end">
                     <router-link class="navbar-item" to="/">
                     Home
@@ -44,9 +44,16 @@ export default {
     data() {
         return {
             selected: '',
-            UserAuthStore : useUserAuthStore()
+            UserAuthStore : useUserAuthStore(),
+            isActive: false,
         }
     },
+
+    methods:{
+        toggleIsActive(){
+            this.isActive =  !this.isActive
+        }
+    }
 
 }
 </script>
