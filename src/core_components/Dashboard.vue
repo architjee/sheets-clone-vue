@@ -1,12 +1,9 @@
 <template>
 
   <div class="container">
-    <div v-if="notification.error" class="notification is-danger">
+    <div v-if="notification.error" class="notification is-danger is-light">
       <button class="delete"></button>
-      Primar lorem ipsum dolor sit amet, consectetur
-      adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec
-      nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a>
-      efficitur.
+     {{notification.error}}
     </div>
     <p class="title">
       Hi user {{ UserAuthStore.getUsername }} !
@@ -59,8 +56,9 @@ export default {
     },
     async createANewFileInStore(new_file_name) {
       const { error } = await this.FileStore.createNewFile(new_file_name)
-      this.notification.error = error
-      await setTimeout(clearError, 10000)
+      if(error)
+        this.notification.error = error
+      await setTimeout(this.clearError, 10000)
     },
     clearError() {
       this.notification.error = ''

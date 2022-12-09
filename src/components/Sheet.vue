@@ -11,7 +11,8 @@ export default {
     return {
       rows_size: 8,
       cols_size: 5,
-      loading: false
+      loading: false,
+
     }
   },
   methods: {
@@ -41,10 +42,10 @@ export default {
           <th><div class="buttons has-addons">
 
 <button class="button" @click="this.cols_size--">
-  <ion-icon name="remove-circle-outline"></ion-icon>
+  <!-- <ion-icon name="remove-circle-outline"></ion-icon> -->-
 </button>
 <button class="button" @click="this.cols_size++">
-  <ion-icon name="add-circle-outline"></ion-icon>
+  <!-- <ion-icon name="add-circle-outline"></ion-icon>c+ -->c+
 </button>
 </div>
 
@@ -64,10 +65,10 @@ export default {
           <div class="buttons has-addons">
 
             <button class="button" @click="this.rows_size--">
-              <ion-icon name="remove-circle-outline"></ion-icon>
+              <!-- <ion-icon name="remove-circle-outline"></ion-icon> -->r-
             </button>
             <button class="button" @click="this.rows_size++">
-              <ion-icon name="add-circle-outline"></ion-icon>
+              <!-- <ion-icon name="add-circle-outline"></ion-icon> --> r+
             </button>
           </div>
 

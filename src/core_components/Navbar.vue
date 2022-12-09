@@ -24,7 +24,7 @@
                     <span class="navbar-item">
                         <router-link to="/login" class="button is-success is-inverted">
                             <span class="icon">
-                                <ion-icon name="log-in-outline"></ion-icon>
+                                <!-- <ion-icon name="log-in-outline"></ion-icon> -->II
                             </span>
                             <span>Login</span>
                         </router-link>

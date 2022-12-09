@@ -9,7 +9,7 @@
                         <input type="email" placeholder="e.g. example@gmail.com" class="input" required
                             v-model="username">
                         <span class="icon is-small is-left">
-                            <ion-icon name="mail"></ion-icon>
+                            <!-- <ion-icon name="mail"></ion-icon> -->maili
                         </span>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div class="control has-icons-left">
                         <input type="password" placeholder="*******" class="input" required v-model="password">
                         <span class="icon is-small is-left">
-                            <ion-icon name="key"></ion-icon>
+                            <!-- <ion-icon name="key"></ion-icon>--> keyi 
 
                         </span>
                     </div>
