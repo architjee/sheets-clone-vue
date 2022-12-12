@@ -13,9 +13,18 @@ export const useUserAuthStore = defineStore('UserAuthStore', {
   getters: {
     getUsername() {
       if (this.is_authenticated)
+      {
+
         return this.user.email
+      }
       return null
     },
+    getUserId(){
+      if (this.is_authenticated)
+      {
+        return this.user.id
+      }
+    }
   },
   actions: {
     async signIn(username_inp, password_inp) {

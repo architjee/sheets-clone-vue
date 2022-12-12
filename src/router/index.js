@@ -1,4 +1,4 @@
-import { createRouter , createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from '../core_components/Home.vue';
 import Sheet from '../components/Sheet.vue'
 import LoginPage from '../core_components/LoginPage.vue'
@@ -31,19 +31,23 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard
-    }
+    },
+    { path: '/sheet/:id', component: Sheet },
+
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
 })
-router.beforeEach(async (to, from) => { 
+
+//  The below function check the validity of each operation if is_authenticated is false, we redirect to Login page.
+router.beforeEach(async (to, from) => {
     let UserAuthStore = useUserAuthStore()
     if (
-      !UserAuthStore.is_authenticated &&  to.name !== 'Login' && to.name!='Home'
+        !UserAuthStore.is_authenticated && to.name !== 'Login' && to.name != 'Home'
     ) {
-      return { name: 'Login' }
+        return { name: 'Login' }
     }
-  })
+})
 export default router

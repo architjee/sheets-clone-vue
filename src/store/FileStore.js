@@ -26,14 +26,14 @@ export const useFileStore = defineStore('SheetDataStore', {
     actions: {
         async fetchFiles() {
             try {
-                const { data, error } = await supabase.from('FileStore').select('*').order('id')
+                const { data, error } = await supabase.from('all_files').select('*').order('id')
 
                 if (error) {
                     console.log('error', error)
                     return
                 }
                 // handle for when no todos are returned
-                if (data === null) {
+                if (!data)  {
                     console.log('no data is present for this user')
                     console.log(data)
                     // assign the data value to the state managaement.
@@ -41,14 +41,16 @@ export const useFileStore = defineStore('SheetDataStore', {
                 }
                 // We got some response but don't know what is it.
                 console.log(data)
+                console.log('You can see the data above', data)
                 if (data.length==0){
+                    console.log('Length was zero')
                     this.metadata.listOfFilesAvailable = []
                     console.log('No files are present for this user it seems');
                 }
                 else{
-                    this.metadata.listOfFilesAvailable = data[0].his_files
-                    console.log('Now the list of files available looks likes this', this.metadata)
-                    console.log('The select query ran successfully and the data fetched is!', data)
+                    console.log('Setting this.metadata.listofFIleAvailable to hisfiles')
+                    this.metadata.listOfFilesAvailable = data
+                    console.log(' We have successfully set this.metadata.listOfFilesAvailable')
 
                 }
             } catch (err) {

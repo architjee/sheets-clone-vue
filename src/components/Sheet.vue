@@ -9,6 +9,7 @@ export default {
   },
   data() {
     return {
+      sheet_id : '',
       rows_size: 8,
       cols_size: 5,
       loading: false,
@@ -20,17 +21,19 @@ export default {
       return String.fromCharCode(row_idx + ('A'.charCodeAt(0)));
     },
     loadDataFromBackend(){
-      
+      console.log('beep boop loading loading')
     }
   },
   mounted(){
     // The component is mounted.
-    loadDataFromBackend()
+    this.sheet_id = this.$route.params.id
+    this.loadDataFromBackend()
   }
 }
 </script>
 
 <template>
+  This is the sheet's view and you are looking at the sheet id{{ sheet_id}}
   <div class="table-container">
     <table class="table is-bordered  is-hoverable ">
       <thead>
