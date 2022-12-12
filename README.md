@@ -1,11 +1,16 @@
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-
 ## From bulma-extensions page loader.
- <div class="pageloader is-active"><span class="title">Loading</span></div>
- 
+
+Code for pageloader using bulma extension.
+>  ```html
+> <div class="pageloader is-active"><span class="title">Loading</span></div>
+> ```
+
+
+### Features that I need to implement :
+- New file creation, 
+-  make a db call to create the new uuid as a row in files table.
+- Repiar icons and insert heroicons.
+- When a new file is successfully generated, pass it to router,
+- Ask router to catch the new file and ask for its data from database.
+- Create a button against each file to delete that file's record.
+- Finally work on the sheet, so as to 

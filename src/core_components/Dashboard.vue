@@ -89,7 +89,7 @@ export default {
       console.log(this.FileStore.getNoOfFiles)
     },
     async createANewFileInStore() {
-      const { newFileName, error } = await 
+      const { newFileName, error } = await supabase.insert()
       if (error)
       {
         this.notification.error = error
