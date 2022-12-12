@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  This is the sheet's view and you are looking at the sheet id{{ sheet_id}}
+  This is the sheet's view and you are looking at the sheet id {{ sheet_id}}
   <div class="table-container">
     <table class="table is-bordered  is-hoverable ">
       <thead>
