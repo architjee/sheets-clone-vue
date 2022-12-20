@@ -27,11 +27,11 @@
     <div>
       <ol>
         <li v-for="file in FileStore.metadata.listOfFilesAvailable" :key="file.id">
-          
+
           <div class="card">
             <header class="card-header">
               <p class="card-header-title">
-              {{ file.file_name }}  {{file.id}}
+                {{ file.file_name }} {{ file.id }}
               </p>
               <!-- <button class="card-header-icon" aria-label="more options">
                 <span class="icon">
@@ -43,14 +43,14 @@
               <div class="content">
                 This file metadata contents are:
                 {{
-                  file.file_metadata
+                    file.file_metadata
                 }}
                 <br>
-                This file was created under author: {{file.author_id}}
+                This file was created under author: {{ file.author_id }}
               </div>
             </div>
             <footer class="card-footer">
-              <router-link :to="'sheet/'+file.id">GoTo File</router-link>
+              <router-link :to="'sheet/' + file.id">GoTo File</router-link>
             </footer>
           </div>
         </li>
@@ -92,7 +92,7 @@ export default {
       let user_id = await this.UserAuthStore.getUserId
       if (user_id && this.UserAuthStore.getUsername) {
         const { error } = await supabase.from('all_files')
-          .insert({ file_metadata: { row_size: 10, col_size: 10 }, author_id: user_id })
+          .insert({   author_id: user_id, main_data: { "main_arr": [["nn"]] }  })
         if (error) {
           this.notification.error = error
           console.log("There was an error that occured in the insertion query inside createANewFileInStore function", error)
@@ -100,7 +100,7 @@ export default {
         } else {
           this.fetchDataFromBackend()
         }
-      }else{
+      } else {
         console.log("Either user_id or getUsername is coming up null. Hence we can't generate the file.")
       }
 

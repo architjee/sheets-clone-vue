@@ -1,30 +1,117 @@
 <script>
 
 import Cell from '../components/Cell.vue'
-import { useUserAuthStore } from '../store/UserAuthStore';
-
+import { supabase } from '../supabase';
 export default {
   components: {
     Cell
   },
   data() {
     return {
-      sheet_id : '',
-      rows_size: 8,
-      cols_size: 5,
-      loading: false,
+      sheet_id: '',
 
+      loading: false,
+      sheet_data: [[""]],
+
+    }
+  }, computed: {
+    // a computed getter
+    rows_size() {
+      // `this` points to the component instance
+      return this.sheet_data.length
+    },
+    cols_size() {
+      return this.sheet_data[0].length
     }
   },
   methods: {
     getRowLabel(row_idx) {
       return String.fromCharCode(row_idx + ('A'.charCodeAt(0)));
     },
-    loadDataFromBackend(){
+    async loadDataFromBackend() {
+      this.enableLoading();
       console.log('beep boop loading loading')
+      console.log('Check for the existence of sheet_id')
+      if (this.sheet_id) {
+        console.log('Resetting sheet data so that we can refill it');
+        this.sheet_data = [[""]]
+
+      } else {
+        console.log('We were unable to fetch sheet id.')
+      }
+      this.disableLoading();
+      try {
+        const { data, error } = await supabase.from('all_files').select().eq('id', this.sheet_id)
+
+        if (error) {
+          console.log('error', error)
+          return
+        }
+        // handle for when no todos are returned
+        if (!data) {
+          console.log('There is no data is present for this file', data)
+          return;
+        }
+        console.log('You can see the data above', data)
+        if (data.length == 1) {
+          console.log('Length was one, which means this file is unique, so we will set the main_data.main_arr')
+          this.sheet_data = data[0].main_data.main_arr
+          
+        }
+        else {
+          console.log('There are multiple file data present for this id')
+        }
+      } catch (err) {
+        console.error('Error retrieving data from db', err)
+      }
+    },
+    enableLoading() {
+      this.loading = true;
+    },
+    disableLoading() {
+      this.loading = false;
+    },
+    async increaseRowSize() {
+      console.log('going to push a new array into this sheet of size ', this.cols_size )
+      let new_row = new Array(this.cols_size)
+      this.sheet_data.push(new_row)
+      await this.syncToServer()
+      console.log('increased the row size by 1')
+    },
+    async increaseColSize() {
+      this.sheet_data.forEach(row => row.push(''))
+      await this.syncToServer()
+      console.log('increased the col size by 1')
+
+    },
+    async decreaseRowSize() {
+      this.sheet_data.pop()
+      await this.syncToServer()
+      console.log('decreased the row size by 1')
+    },
+    async decreaseColSize() {
+      this.sheet_data.forEach(row => row.pop())
+      await this.syncToServer()
+      console.log('decreased the col size by 1')
+
+    },
+    async syncToServer() {
+      this.enableLoading();
+      console.log('This is a function to force sync the data from client to the backend', this.sheet_data);
+      const { error } = await supabase.from('all_files').update({ main_data: { main_arr: this.sheet_data } }).eq('id', this.sheet_id)
+      if (error) {
+        console.log(' Oh! no, Seems like an error occured', error)
+      }
+      this.disableLoading()
+    },
+    async updateCellData(payload) {
+      this.sheet_data[payload.x][payload.y] = payload.content
+      console.log('So you fired the cell updation with this payload', payload , 'and this final sheet_data', this.sheet_data)
+      await this.syncToServer()
     }
+
   },
-  mounted(){
+  mounted() {
     // The component is mounted.
     this.sheet_id = this.$route.params.id
     this.loadDataFromBackend()
@@ -33,7 +120,11 @@ export default {
 </script>
 
 <template>
-  This is the sheet's view and you are looking at the sheet id {{ sheet_id}}
+  <div class="pageloader" :class="{ 'is-active': loading }"><span class="title">Loading</span></div>
+  <p>
+    This is the sheet's view and you are looking at the sheet id {{ sheet_id }}
+  </p>
+  <p @click="syncToServer()">Click me to Force sync to server</p>
   <div class="table-container">
     <table class="table is-bordered  is-hoverable ">
       <thead>
@@ -42,23 +133,25 @@ export default {
 
           </th>
           <th v-for="row in Array(cols_size).keys()">{{ getRowLabel(row) }}</th>
-          <th><div class="buttons has-addons">
+          <th>
+            <div class="buttons has-addons">
 
-<button class="button" @click="this.cols_size--">
-  <!-- <ion-icon name="remove-circle-outline"></ion-icon> -->-
-</button>
-<button class="button" @click="this.cols_size++">
-  <!-- <ion-icon name="add-circle-outline"></ion-icon>c+ -->c+
-</button>
-</div>
+              <button class="button" @click="this.decreaseColSize">
+                <!-- <ion-icon name="remove-circle-outline"></ion-icon> -->-
+              </button>
+              <button class="button" @click="this.increaseColSize">
+                <!-- <ion-icon name="add-circle-outline"></ion-icon>c+ -->c+
+              </button>
+            </div>
 
           </th>
         </tr>
       </thead>
+
       <tr v-for="row in Array(rows_size).keys()">
         <th>{{ row + 1 }}</th>
         <td v-for="col in Array(cols_size).keys()" initialcontent="" class="padding0">
-          <Cell></Cell>
+          <Cell :x="col" :y="row" :content="sheet_data[row][col]" @cellupdation="updateCellData"></Cell>
         </td>
       </tr>
       <tr>
@@ -67,10 +160,10 @@ export default {
         <th>
           <div class="buttons has-addons">
 
-            <button class="button" @click="this.rows_size--">
+            <button class="button" @click="this.decreaseRowSize">
               <!-- <ion-icon name="remove-circle-outline"></ion-icon> -->r-
             </button>
-            <button class="button" @click="this.rows_size++">
+            <button class="button" @click="this.increaseRowSize">
               <!-- <ion-icon name="add-circle-outline"></ion-icon> --> r+
             </button>
           </div>
@@ -87,7 +180,5 @@ export default {
 
 </template>
 <style>
-/* .padding0{
-padding: 0 !important;
-} */
+
 </style>
