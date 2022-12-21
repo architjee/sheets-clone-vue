@@ -92,7 +92,7 @@ export default {
       let user_id = await this.UserAuthStore.getUserId
       if (user_id && this.UserAuthStore.getUsername) {
         const { error } = await supabase.from('all_files')
-          .insert({   author_id: user_id, main_data: { "main_arr": [["nn"]] }  })
+          .insert({   author_id: user_id, main_data: { "main_arr": [[""]] }  })
         if (error) {
           this.notification.error = error
           console.log("There was an error that occured in the insertion query inside createANewFileInStore function", error)
