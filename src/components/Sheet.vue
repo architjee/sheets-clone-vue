@@ -41,7 +41,7 @@ export default {
       } else {
         console.log('We were unable to fetch sheet id.')
       }
-      this.disableLoading();
+      
       try {
         const { data, error } = await supabase.from('all_files').select().eq('id', this.sheet_id)
 
@@ -58,6 +58,7 @@ export default {
         if (data.length == 1) {
           console.log('Length was one, which means this file is unique, so we will set the main_data.main_arr', this.sheet_data)
           this.sheet_data = data[0].main_data.main_arr
+          console.log('This sheet_data is ', this.sheet_data)
           this.sheet_name = data[0].file_name
           this.newfilename = this.sheet_name
         }
@@ -67,6 +68,7 @@ export default {
       } catch (err) {
         console.error('Error retrieving data from db', err)
       }
+      this.disableLoading();
     },
     enableLoading() {
       this.loading = true;
@@ -193,7 +195,7 @@ export default {
 
       <tr v-for="row in Array(rows_size).keys()">
         <th>{{ row + 1 }}</th>
-        <td v-for="col in Array(cols_size).keys()" initialcontent="" class="padding0">
+        <td v-for="col in Array(cols_size).keys()" >
           <Cell :x="col" :y="row" :initialcontent="sheet_data[row][col]" @cellupdation="updateCellData"></Cell>
         </td>
       </tr>
