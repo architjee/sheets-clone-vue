@@ -120,7 +120,7 @@ export default {
       this.disableLoading()
     },
     async updateCellData(payload) {
-      this.sheet_data[payload.x][payload.y] = payload.content
+      this.sheet_data[payload.y][payload.x] = payload.content
       console.log('So you fired the cell updation with this payload', payload, 'and this final sheet_data', this.sheet_data)
       await this.pushToServer()
     },
@@ -194,7 +194,7 @@ export default {
       <tr v-for="row in Array(rows_size).keys()">
         <th>{{ row + 1 }}</th>
         <td v-for="col in Array(cols_size).keys()" initialcontent="" class="padding0">
-          <Cell :x="col" :y="row" :initialcontent="sheet_data[col][row]" @cellupdation="updateCellData"></Cell>
+          <Cell :x="col" :y="row" :initialcontent="sheet_data[row][col]" @cellupdation="updateCellData"></Cell>
         </td>
       </tr>
       <tr>
