@@ -13,3 +13,6 @@ Code for pageloader using bulma extension.
 - Create a button against each file to delete that file's record.
 - Finally work on the sheet, so as to 
 - Notification panel
+
+
+## Hosted at https://sheets-clone-architjee.netlify.app
