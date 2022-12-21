@@ -193,10 +193,10 @@ export default {
         </tr>
       </thead>
 
-      <tr v-for="row in Array(rows_size).keys()">
+      <tr v-for="row in Array(rows_size).keys()" :key="row">
         <th>{{ row + 1 }}</th>
-        <td v-for="col in Array(cols_size).keys()" >
-          <Cell :x="col" :y="row" :initialcontent="sheet_data[row][col]" @cellupdation="updateCellData"></Cell>
+        <td v-for="col in Array(cols_size).keys()" :key="col">
+          <Cell :x="col" :y="row" :initialcontent="sheet_data[row][col]" :key="sheet_data[row][col]" @cellupdation="updateCellData"></Cell>
         </td>
       </tr>
       <tr>

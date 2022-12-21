@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       editing: false,
-      content: this.initialcontent,
+      content: '',
     }
   },
   methods: {
@@ -23,6 +23,10 @@ export default {
       this.$emit('cellupdation', payload)
       this.editing = false;
     }
+  },
+  mounted(){
+    console.log(' setting initial content to ', this.initialcontent)
+    this.content = this.initialcontent
   }
 
 }
