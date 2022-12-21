@@ -9,13 +9,15 @@
         <div class="hero-body">
             <div class="container">
                 <router-view></router-view>
+
             </div>
+           
         </div>
         <!-- Hero footer: will stick at the bottom -->
         <div class="hero-foot">
             
                 <div class="container">
-                   Will look at footer later.
+                   Copyright © All rights reserved.
                 </div>
            
         </div>

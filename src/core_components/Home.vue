@@ -5,7 +5,7 @@
       Sheets Clone App Powered by Vue.
     </p>
     <p class="subtitle">
-      Made with Love by AJ.
+      Made with <i class="bi bi-heart-fill"></i> by AJ.
     </p>
   </div>
 

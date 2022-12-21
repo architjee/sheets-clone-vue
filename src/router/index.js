@@ -23,6 +23,11 @@ const routes = [
         component: LoginPage
     },
     {
+        path: '/logout',
+        name: 'Logout',
+        component: Home
+    },
+    {
         path: '/createuser',
         name: 'CreateUser',
         component: CreateUser,
@@ -41,6 +46,7 @@ const router = createRouter({
     routes
 })
 
+// Disabling the redirecting functionality for now.
 //  The below function check the validity of each operation if is_authenticated is false, we redirect to Login page.
 router.beforeEach(async (to, from) => {
     let UserAuthStore = useUserAuthStore()
@@ -48,6 +54,9 @@ router.beforeEach(async (to, from) => {
         !UserAuthStore.is_authenticated && to.name !== 'Login' && to.name != 'Home'
     ) {
         return { name: 'Login' }
+    }else if( UserAuthStore.is_authenticated && to.name == 'Logout'){
+        UserAuthStore.signOut()
+        return { name: 'Login'}
     }
 })
 export default router

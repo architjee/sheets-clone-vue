@@ -26,7 +26,7 @@ export const useFileStore = defineStore('SheetDataStore', {
     actions: {
         async fetchFiles() {
             try {
-                const { data, error } = await supabase.from('all_files').select('*').order('id')
+                const { data, error } = await supabase.from('all_files').select(`id, created_at, file_name`)
 
                 if (error) {
                     console.log('error', error)
@@ -48,7 +48,7 @@ export const useFileStore = defineStore('SheetDataStore', {
                     console.log('No files are present for this user it seems');
                 }
                 else{
-                    console.log('Setting this.metadata.listofFIleAvailable to hisfiles')
+                    console.log('Setting this.metadata.listofFIleAvailable to hisfiles', data)
                     this.metadata.listOfFilesAvailable = data
                     console.log(' We have successfully set this.metadata.listOfFilesAvailable')
 
