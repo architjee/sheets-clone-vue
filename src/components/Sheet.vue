@@ -92,7 +92,7 @@ export default {
     async decreaseRowSize() {
       if (this.rows_size<=1){
         console.log("sorry can't do it ")
-        alert('Can delete if there is only 1 row')
+        alert("Can't delete if there is only 1 row")
       }else{
         this.sheet_data.pop()
       await this.pushToServer()
@@ -103,7 +103,7 @@ export default {
     async decreaseColSize() {
       if(this.cols_size<=1){
         console.log(" Sorry boss, no can do")
-        alert('Can delete if there is only 1 column')
+        alert("Can't delete if there is only 1 column")
       }else{
         this.sheet_data.forEach(row => row.pop())
       await this.pushToServer()

@@ -12,8 +12,7 @@
                         <input type="email" placeholder="e.g. example@gmail.com" class="input" required
                             v-model="username">
                         <span class="icon is-small is-left">
-                            <!-- TODO place proper icon here -->
-                            <!-- <ion-icon name="mail"></ion-icon> -->II
+                            <i class="bi bi-envelope"></i>
                         </span>
                     </div>
                 </div>
@@ -22,8 +21,7 @@
                     <div class="control has-icons-left">
                         <input type="password" placeholder="*******" class="input" required v-model="password">
                         <span class="icon is-small is-left">
-                            <!-- <ion-icon name="key"></ion-icon> -->
-                            Key icon to place here.
+                            <i class="bi bi-key"></i>
                         </span>
                     </div>
                 </div>
@@ -35,7 +33,7 @@
                 </div>
             </form>
             <div class="notification" v-if="display_error">{{this.display_error}}</div>
-            <div class="notification is-success" v-else>
+            <div v-if="signup_successfull" class="notification is-success">
                 Sign Up Succesfull
                 <router-link to="/login">Go to Login</router-link>
             </div>
