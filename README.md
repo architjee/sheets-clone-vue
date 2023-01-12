@@ -1,18 +1,22 @@
-## From bulma-extensions page loader.
+# Sheets-clone-vue
 
-Code for pageloader using bulma extension.
->  ```html
-> <div class="pageloader is-active"><span class="title">Loading</span></div>
-> ```
+Sheets-clone-vue is a  my attempt to recreate a simple sheets clone using, vue.js. It is a bare-bones project, but with all the parts in working condition. Vue-router has enabled routing, Pinia for state management. The backend is supported by supabase, with features like file creation, deletion, renaming a file and authentication.
 
 
-### Features that I need to implement :
+## Dev server
 
-- Repiar icons and insert heroicons.
-- Ask router to catch the new file and ask for its data from database.
-- Create a button against each file to delete that file's record.
-- Finally work on the sheet, so as to 
-- Notification panel
+To run the dev server
 
+```bash
+npm run dev
+```
 
-## Hosted at https://sheets-clone-architjee.netlify.app
+## Build
+
+```bash
+npm run build
+```
+
+## Hosted at
+
+Currently the application is hosted at https://sheets-clone-architjee.netlify.app/
